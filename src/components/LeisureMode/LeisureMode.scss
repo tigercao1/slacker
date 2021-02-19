@@ -1,0 +1,23 @@
+.leisure {
+    display: flex;
+    flex-direction: row;
+    box-sizing: inherit;
+    height: calc(100% - 75px);
+    .column {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-basis: 0;
+        max-height: inherit;
+        .title {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .body {
+            display: flex;
+            flex-direction: column;
+            overflow: scroll;
+        }
+    }
+}

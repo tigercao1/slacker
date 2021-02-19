@@ -1,0 +1,51 @@
+.home-body {
+    height: 100vh;
+    width: 100vw;
+    box-sizing: inherit;
+    padding: 0 33vw 0 33vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .content {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &.mount {
+        animation: fade-in 1s ease-in forwards;
+        opacity: 0;
+        .spacer {
+            flex-grow: 1;
+            animation: slide-in 1s ease-out forwards;
+        }
+    }
+
+    &.unmount {
+        animation: fade-out 0.3s forwards;
+        .spacer {
+            animation: slide-out 1s ease-in forwards;
+        }
+    }
+}
+
+@keyframes fade-in {
+    100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes fade-out {
+    100% { opacity: 0; }
+}
+
+@keyframes slide-in {
+    100% { flex-grow: 0; }
+}
+
+@keyframes slide-out {
+    100% { flex-grow: 1; }
+}

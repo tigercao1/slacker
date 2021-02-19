@@ -1,0 +1,18 @@
+.leisure-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 50px;
+    background-color: yellow;
+    .time {
+        width:100px;
+        text-align: left;
+    }
+    .button-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
