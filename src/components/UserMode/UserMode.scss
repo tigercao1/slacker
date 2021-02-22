@@ -1,0 +1,17 @@
+input {
+    background: white;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.link {
+    color: #F40058;
+    text-decoration: underline;
+    cursor: pointer;
+}

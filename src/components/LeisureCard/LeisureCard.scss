@@ -72,21 +72,21 @@
     &.unmount {
         animation: fade-out 0.5s forwards;
     }
-}
+    input {
+        outline: none;
+        border: none;
+        background: #43BEE5;
+        font-family: 'Andale Mono';
+        font-size: 20px;
+        font-weight: 600;
+        &:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        &:focus {
+            background: rgba(0, 0, 0, 0.2);
+        }
+    }
 
-input {
-    outline: none;
-    border: none;
-    background: #43BEE5;
-    font-family: 'Andale Mono';
-    font-size: 20px;
-    font-weight: 600;
-    &:hover {
-        background: rgba(0, 0, 0, 0.2);
-    }
-    &:focus {
-        background: rgba(0, 0, 0, 0.2);
-    }
 }
 
 @keyframes fade-in {

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import './LeisureCard.scss';
 import utils from '../../utils/utils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const LeisureCard = (props) => {
 
