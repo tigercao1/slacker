@@ -93,7 +93,7 @@ const LeisureCard = (props) => {
     }
 
     return (
-        <div className={"leisure-card " + (render ? "mount" : "unmount")} onTransitionEnd={handleAnimationEnd}>
+        <div className={"leisure-card " + (render ? "mount" : "unmount")} onAnimationEnd={handleAnimationEnd}>
             <FontAwesomeIcon icon="times" className={!timerOn && props.currentActiveCardType !== type ? "delete function" : "delete disabled"} onClick={handleDeleteItem}/>
             <input className="card-title" 
                 ref={nameInput} 

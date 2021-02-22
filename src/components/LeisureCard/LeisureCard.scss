@@ -6,10 +6,11 @@
     box-sizing: border-box;
     padding: 50px;
     background: #43BEE5;
-    margin: 20px;
+    margin: 0 20px 20px 20px;
     border-radius: 20px;
     position: relative;
     color: black;
+    opacity: 0;
 
     .delete {
         position: absolute;
@@ -64,14 +65,14 @@
         }
     }
 
-
     &.mount {
-        animation: fade-in 0.5s forwards;
+        animation: fade-in 2s forwards;
     }
 
     &.unmount {
         animation: fade-out 0.5s forwards;
     }
+
     input {
         outline: none;
         border: none;
@@ -90,10 +91,10 @@
 }
 
 @keyframes fade-in {
-    0% {  opacity: 0 }
     100% {  opacity: 1 }
 }
 
 @keyframes fade-out {
+    0% {  opacity: 1 }
     100% { opacity: 0; }
 }
