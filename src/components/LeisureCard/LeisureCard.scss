@@ -2,17 +2,95 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     box-sizing: border-box;
     padding: 50px;
-    background-color: yellow;
-    .time {
-        width:100px;
-        text-align: left;
+    background: #43BEE5;
+    margin: 20px;
+    border-radius: 20px;
+    position: relative;
+    color: black;
+
+    .delete {
+        position: absolute;
+        top: 6px;
+        right: 10px;
+        font-size: 15px;
+        padding: 10px;
+        border: none;
+        outline: none;
+        user-select: none;
+        overflow: hidden;
+        filter: drop-shadow(3px 2px 3px rgba($color: #000000, $alpha: 0.3));
+        transition: opacity 0.1s, transform 0.1s, filter 0.1s;
+        cursor: pointer;
+
+        &.disabled {
+            transform: translateX(3px) translateY(2px);
+            filter: drop-shadow(0px 0px 0px #666);
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        &:hover {
+            transform: translateX(-1px) translateY(-1px);
+            filter: drop-shadow(4px 3px 4px rgba($color: #000000, $alpha: 0.2));
+        }
+        &:active {
+            transform: translateX(3px) translateY(2px);
+            filter: drop-shadow(0px 0px 0px #666);
+        }
     }
-    .button-group {
+    .time-group {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        .time {
+            text-align: left;
+            font-size: 38px;
+            font-weight: 600;
+            color: #F40058;
+        }
     }
+    .btn {
+        margin-left: auto;
+        color: #F40058;
+        &:hover {
+            background: #161b40;
+        }
+    }
+
+
+    &.mount {
+        animation: fade-in 0.5s forwards;
+    }
+
+    &.unmount {
+        animation: fade-out 0.2s forwards;
+    }
+}
+
+input {
+    outline: none;
+    border: none;
+    background: #43BEE5;
+    font-family: 'Andale Mono';
+    font-size: 20px;
+    font-weight: 600;
+    &:hover {
+        background: rgba(0, 0, 0, 0.2);
+    }
+    &:focus {
+        background: rgba(0, 0, 0, 0.2);
+    }
+}
+
+@keyframes fade-in {
+    0% {  opacity: 0 }
+    100% {  opacity: 1 }
+}
+
+@keyframes fade-out {
+    100% { opacity: 0; }
 }

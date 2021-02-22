@@ -1,20 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import './LeisureCard.scss';
+import utils from '../../utils/utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const LeisureCard = (props) => {
 
     // Convert ten milliseconds to formatted time hh:mm:ss:tt
-    const msToTime = (ms) => {
-        let pad = (n, z = 2) => ('00' + n).slice(-z);
-        return pad(ms/3.6e6 | 0) + ':' + pad((ms%3.6e6)/6e4 | 0) + ':' + pad((ms%6e4)/1000 | 0) + '.' + pad(ms%1000, 3);
-    }
 
     const [id] = useState(props.id);
     const [type, setType] = useState(props.type);
     const [name, setName] = useState(props.name ? props.name : "Time-Card-" + props.id);
-    const [milliseconds, setMilliseconds] = useState(0);
-    const [time, setTime] = useState(msToTime(0));
+    const [milliseconds, setMilliseconds] = useState(props.time);
+    const [time, setTime] = useState(utils.msToTime(0));
     const [timerOn, setTimerOn] = useState(false);
+    const [render, setRender] = useState(true);
     const timerId = useRef('');
     const nameInput = useRef();
 
@@ -25,7 +24,9 @@ const LeisureCard = (props) => {
 
         if (timerOn && props.currentActiveCardId !== id) {
             setTimerOn(false);
+            props.updateObjTime(id, milliseconds)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timerOn, props.currentActiveCardId, id])
 
     useEffect(() => {
@@ -35,12 +36,15 @@ const LeisureCard = (props) => {
     }, [id, props.mostRecentAddedCardId])
 
     useEffect(() => {
-        setTime(msToTime(milliseconds));
+        setTime(utils.msToTime(milliseconds));
     }, [milliseconds])
+
+    useEffect(() => {
+        setMilliseconds(props.time);
+    }, [props.time])
 
     const emitNameChange = () => {
         let currName = nameInput.current.value;
-        console.log(currName);
         if (currName && currName !== name) {
             setName(currName);
             props.handleNameChange(id, currName);
@@ -53,39 +57,62 @@ const LeisureCard = (props) => {
 
     const handleStart = () => {
         if (!timerOn) {
-            props.handleCurrentActive(id);
+            props.handleCurrentActive(id, type);
             setTimerOn(true);
             let startTime = Date.now();
             timerId.current = setInterval(() => {
-                setMilliseconds(milliseconds + Math.floor((Date.now() - startTime)));
+                let time = Math.floor((Date.now() - startTime))
+                setMilliseconds(milliseconds + time);
+                props.updateTotalTime(time, type)
             }, 10);
         }
     }
 
     const handlePause = () => {
         setTimerOn(false);
+        props.handleCurrentActive(null, null);
+        props.updateObjTime(id, milliseconds)
     }
 
-    const handleReset = ()=> {
-        setTimerOn(false);
-        setMilliseconds(0);
+    const handleDeleteItem = () => {
+        setRender(false);
+    }
+
+    const handleKeypress = (e) => {
+        let currName = name;
+        if (e.keyCode === 13) {
+            nameInput.current.blur();
+        } else if (e.keyCode === 27) {
+            nameInput.current.value = currName;
+            nameInput.current.blur();
+        }
+    }
+
+    const handleAnimationEnd = () => {
+        if (!render) {
+            props.handleDeleteItem(id);
+        }
     }
 
     return (
-        <div className="leisure-card">
-            <input className="title" 
+        <div className={"leisure-card " + (render ? "mount" : "unmount")} onTransitionEnd={handleAnimationEnd}>
+            <FontAwesomeIcon icon="times" className={!timerOn && props.currentActiveCardType !== type ? "delete function" : "delete disabled"} onClick={handleDeleteItem}/>
+            <input className="card-title" 
                 ref={nameInput} 
                 defaultValue={name}
                 onBlur={emitNameChange} 
                 onFocus={handleFocus}
+                onKeyDown={handleKeypress}
             ></input>
-            <div className="time">{time}</div>
-            <div className="button-group">
-                <div className="btn function" onClick={handleStart}>S</div>
-                <div className="btn function" onClick={handlePause}>P</div>
-                <div className="btn function" onClick={handleReset}>R</div>
+            <div className="time-group">
+                <div className="time">{time}</div>
+                {
+                    timerOn ?
+                    <div className="btn function" onClick={handlePause}><FontAwesomeIcon icon="pause"/></div> :
+                    <div className="btn function" onClick={handleStart}><FontAwesomeIcon icon="play"/></div>
+                }
             </div>
-            <div className="sound"></div>
+            <div className="sound">Notify</div>
         </div>
     )
 }

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Home.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Home = (props) => {
     const [render, setRender] = useState(true);
@@ -22,7 +23,7 @@ const Home = (props) => {
             <div className="spacer"></div>
             <div className="content">
                 <h1>Slacker</h1>
-                <div className="btn home" onClick={handleUnmount} data-hover="Get Slacking">&#8680;</div>
+                <div className="btn home" onClick={handleUnmount} data-hover="Get Slacking"><FontAwesomeIcon icon="chevron-right"/></div>
             </div>
         </div>
     );

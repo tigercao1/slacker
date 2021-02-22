@@ -3,6 +3,10 @@ import './App.scss';
 import Home from './components/Home/Home';
 import NavBar from './components/NavBar/NavBar';
 import LeisureMode from './components/LeisureMode/LeisureMode';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTimes, faPlay, faPause, faUndo, faPlus, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faTimes, faPlay, faPause, faUndo, faPlus, faChevronRight);
 
 function App() {
     const [showHome, setShowHome] = useState(true);
