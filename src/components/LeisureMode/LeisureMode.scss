@@ -2,8 +2,10 @@
     display: flex;
     flex-direction: row;
     box-sizing: inherit;
-    height: calc(100% - 75px);
+    height: calc(100% - 60px);
     color: #F40058;
+    opacity: 0;
+    animation: fade-in 0.5s forwards;
     .column {
         display: flex;
         flex-direction: column;
@@ -15,7 +17,7 @@
             flex-direction: column;
             align-items: flex-start;
             box-sizing: border-box;
-            padding: 20px 40px 0 40px;
+            padding: 40px 40px 0 40px;
             .title {
                 width: 100%;
                 display: flex;
@@ -63,4 +65,8 @@
         height: 40px;
     }
     
+}
+
+@keyframes fade-in {
+    100% { opacity: 1; }
 }

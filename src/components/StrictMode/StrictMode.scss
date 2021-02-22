@@ -1,0 +1,12 @@
+.strict {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #F40058;
+    opacity: 0;
+    animation: fade-in 0.5s forwards;
+}
+
+@keyframes fade-in {
+    100% {opacity: 1}
+}

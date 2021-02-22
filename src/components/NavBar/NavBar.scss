@@ -1,20 +1,28 @@
 .navbar {
     width: 100%;
-    height: 75px;
-    .navbar-body {
-        padding: 0 auto 0 auto;
-        border-bottom: 1px solid grey;
+    height: 65px;
+    background: #43BEE5;
+    .tabs {
         display: flex;
         flex-direction: row;
         box-sizing: content-box;
         height: 100%;
-        justify-content: space-evenly;
-        align-items: flex-end;
+        align-items: center;
+        width: 100%;
         .tab {
-            margin: auto;
-            border: 1px solid grey;
-            border-bottom: 1px solid green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px 0 20px;
+            height: 100%;
             box-sizing: border-box;
+            border-top-left-radius: 20px 20px;
+            border-top-right-radius: 20px 20px;
+            font-weight: 600;
+            &.selected {
+                background: #161B40;
+                color: #F40058;
+            }
         }
     }
 }

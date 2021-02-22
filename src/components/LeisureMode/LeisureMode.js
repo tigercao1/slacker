@@ -1,7 +1,7 @@
 import LeisureCard from '../LeisureCard/LeisureCard';
 import './LeisureMode.scss';
 import { nanoid } from 'nanoid';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import utils from '../../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
