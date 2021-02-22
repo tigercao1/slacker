@@ -1,6 +1,6 @@
-import './StrictMode.scss';
+import './StrictTab.scss';
 
-const StrictMode = (props) => {
+const StrictTab = (props) => {
     return (
         <div className="strict">
             <h1>Coming soon</h1>
@@ -8,4 +8,4 @@ const StrictMode = (props) => {
     )
 }
 
-export default StrictMode;
+export default StrictTab;

@@ -2,9 +2,7 @@ import { useState } from 'react';
 import './App.scss';
 import Home from './components/Home/Home';
 import NavBar from './components/NavBar/NavBar';
-import LeisureMode from './components/LeisureMode/LeisureMode';
-import StrictMode from './components/StrictMode/StrictMode';
-import UserMode from './components/UserMode/UserMode';
+import { LeisureTab, StrictTab, UserTab } from './components/Tabs';
 import tabs from './utils/tabs'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTimes, faPlay, faPause, faUndo, faPlus, faChevronRight, faUser } from '@fortawesome/free-solid-svg-icons'
@@ -27,9 +25,9 @@ function App() {
                 <div className="app-body">
                     <NavBar currentTab={currentTab} setCurrentTab={setCurrentTab}></NavBar>
                     {
-                        currentTab === tabs.LEISURE ? <LeisureMode></LeisureMode> :
-                        currentTab === tabs.STRICT ? <StrictMode></StrictMode> :
-                        currentTab === tabs.USER ? <UserMode></UserMode> : <></>
+                        currentTab === tabs.LEISURE ? <LeisureTab></LeisureTab> :
+                        currentTab === tabs.STRICT ? <StrictTab></StrictTab> :
+                        currentTab === tabs.USER ? <UserTab></UserTab> : <></>
                     }
                 </div>
             }

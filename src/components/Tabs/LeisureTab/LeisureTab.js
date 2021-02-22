@@ -1,11 +1,11 @@
-import LeisureCard from '../LeisureCard/LeisureCard';
-import './LeisureMode.scss';
+import { LeisureCard } from '../../LeisureCard';
+import './LeisureTab.scss';
 import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
-import utils from '../../utils/utils';
+import utils from '../../../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const LeisureMode = (props) => {
+const LeisureTab = () => {
 
     const localTimerCards = JSON.parse(localStorage.getItem("timerCards"));
 
@@ -100,6 +100,31 @@ const LeisureMode = (props) => {
         setTimerCardList(tempList);
     }
 
+    const cardList = (type) => {
+        return (
+            timerCardList.map((card) => {
+                return (
+                    card.type === type &&
+                    <LeisureCard 
+                        key={card.id}
+                        name={card.name}
+                        id={card.id}
+                        time={card.time}
+                        type={card.type}
+                        handleCurrentActive={handleCurrentActive}
+                        handleNameChange={handleNameChange}
+                        currentActiveCardId={currentActiveCardId}
+                        currentActiveCardType={currentActiveCardType}
+                        mostRecentAddedCardId={mostRecentAddedCardId}
+                        updateTotalTime={updateTotalTime}
+                        updateObjTime={updateObjTime}
+                        handleDeleteItem={handleDeleteItem}
+                    ></LeisureCard>
+                )
+            })
+        )
+    }
+
     return (
         <div className="leisure">
             <div id="work" className="column">
@@ -111,34 +136,23 @@ const LeisureMode = (props) => {
                     <div className="total-time">
                         <div className="time">{utils.msToTime(totalWorkTime)}</div>
                         <div className="btn-group">
-                            <div className={currentActiveCardType === "work" ? "btn function" : "btn disabled"} onClick={handlePauseAll}><FontAwesomeIcon icon="pause"/></div>
-                            <div className={currentActiveCardType === "work" ? "btn disabled" : "btn function"} onClick={() => handleResetAll("work")}><FontAwesomeIcon icon="undo"/></div>
+                            <div 
+                                className={currentActiveCardType === "work" ? "btn function" : "btn disabled"} 
+                                onClick={handlePauseAll}
+                            >
+                                <FontAwesomeIcon icon="pause"/>
+                            </div>
+                            <div 
+                                className={currentActiveCardType === "work" ? "btn disabled" : "btn function"} 
+                                onClick={() => handleResetAll("work")}
+                            >
+                                <FontAwesomeIcon icon="undo"/>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="body">
-                    {
-                        timerCardList.map((card) => {
-                            return (
-                                card.type === "work" &&
-                                <LeisureCard 
-                                    key={card.id}
-                                    name={card.name}
-                                    id={card.id}
-                                    time={card.time}
-                                    type={card.type}
-                                    handleCurrentActive={handleCurrentActive}
-                                    handleNameChange={handleNameChange}
-                                    currentActiveCardId={currentActiveCardId}
-                                    currentActiveCardType={currentActiveCardType}
-                                    mostRecentAddedCardId={mostRecentAddedCardId}
-                                    updateTotalTime={updateTotalTime}
-                                    updateObjTime={updateObjTime}
-                                    handleDeleteItem={handleDeleteItem}
-                                ></LeisureCard>
-                            )
-                        })
-                    }
+                    { cardList("work") }
                 </div>
             </div>
             <div id="slack" className="column">
@@ -156,32 +170,11 @@ const LeisureMode = (props) => {
                     </div>
                 </div>
                 <div className="body">
-                    {
-                        timerCardList.map((card) => {
-                            return (
-                                card.type === "slack" &&
-                                <LeisureCard
-                                    key={card.id}
-                                    name={card.name}
-                                    id={card.id}
-                                    time={card.time}
-                                    type={card.type}
-                                    handleCurrentActive={handleCurrentActive}
-                                    handleNameChange={handleNameChange}
-                                    currentActiveCardId={currentActiveCardId}
-                                    currentActiveCardType={currentActiveCardType}
-                                    mostRecentAddedCardId={mostRecentAddedCardId}
-                                    updateTotalTime={updateTotalTime}
-                                    updateObjTime={updateObjTime}
-                                    handleDeleteItem={handleDeleteItem}
-                                ></LeisureCard>
-                            )
-                        })
-                    }
+                    { cardList("slack") }
                 </div>
             </div>
         </div>
     )
 };
 
-export default LeisureMode;
+export default LeisureTab;

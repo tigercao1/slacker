@@ -1,9 +1,9 @@
-import './UserMode.scss';
+import './UserTab.scss';
 import { useForm } from "react-hook-form";
-import UserController from './../../controllers/UserController';
+import UserController from '../../../controllers/UserController';
 import { useState } from 'react';
 
-const UserMode = (props) => {
+const UserTab = (props) => {
     const userController = new UserController();
 
     const { register, handleSubmit } = useForm();
@@ -41,4 +41,4 @@ const UserMode = (props) => {
         </>
     )
 }
-export default UserMode;
+export default UserTab;

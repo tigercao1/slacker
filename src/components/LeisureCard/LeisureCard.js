@@ -5,10 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const LeisureCard = (props) => {
 
-    // Convert ten milliseconds to formatted time hh:mm:ss:tt
-
-    const [id] = useState(props.id);
-    const [type, setType] = useState(props.type);
+    const id = props.id;
+    const type = props.type;
     const [name, setName] = useState(props.name ? props.name : "Time-Card-" + props.id);
     const [milliseconds, setMilliseconds] = useState(props.time);
     const [time, setTime] = useState(utils.msToTime(0));
