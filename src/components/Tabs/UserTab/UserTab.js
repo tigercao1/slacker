@@ -21,7 +21,7 @@ const UserTab = (props) => {
         <>
             {
                 !userRegister ?
-                <form onSubmit={handleSubmit(handleLogin)}>
+                <form data-cy="login-form" onSubmit={handleSubmit(handleLogin)}>
                     <input name="username" type="email" placeholder="example@mail.com" ref={register({ required: true })} />
                     <input name="password" type="password" placeholder="Password" ref={register({ required: true })} />
                     <div className="btn-group">
@@ -29,12 +29,12 @@ const UserTab = (props) => {
                         <div className="link" onClick={() => setUserRegister(true)}>Register</div>
                     </div>
                 </form> :
-                <form onSubmit={handleSubmit(handleRegister)}>
+                <form data-cy="register-form" onSubmit={handleSubmit(handleRegister)}>
                     <input name="username" type="email" placeholder="example@mail.com" ref={register({ required: true })} />
                     <input name="password" type="password" placeholder="Password" ref={register({ required: true })} />
                     <div className="btn-group">
                         <input type="submit" value="Register"/>
-                        <div className="link" onClick={() => setUserRegister(false)}><span>Already have an account? </span> Login</div>
+                        <div className="link" onClick={() => setUserRegister(false)}>Already have an account? Login</div>
                     </div>
                 </form>
             }

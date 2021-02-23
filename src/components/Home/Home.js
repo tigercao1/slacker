@@ -23,7 +23,7 @@ const Home = (props) => {
             <div className="spacer"></div>
             <div className="content">
                 <h1>Slacker</h1>
-                <div className="btn home" onClick={handleUnmount} data-hover="Get Slacking"><FontAwesomeIcon icon="chevron-right"/></div>
+                <div data-cy="home-button" className="btn home" onClick={handleUnmount}><FontAwesomeIcon icon="chevron-right"/></div>
             </div>
         </div>
     );

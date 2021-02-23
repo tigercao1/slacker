@@ -94,8 +94,15 @@ const LeisureCard = (props) => {
 
     return (
         <div className={"leisure-card " + (render ? "mount" : "unmount")} onAnimationEnd={handleAnimationEnd}>
-            <FontAwesomeIcon icon="times" className={!timerOn && props.currentActiveCardType !== type ? "delete function" : "delete disabled"} onClick={handleDeleteItem}/>
-            <input className="card-title" 
+            <FontAwesomeIcon 
+                data-cy="delete"
+                icon="times" 
+                className={!timerOn && props.currentActiveCardType !== type ? "delete function" : "delete disabled"} 
+                onClick={handleDeleteItem}
+            />
+            <input
+                data-cy="name"
+                className="card-title" 
                 ref={nameInput} 
                 defaultValue={name}
                 onBlur={emitNameChange} 
@@ -103,14 +110,14 @@ const LeisureCard = (props) => {
                 onKeyDown={handleKeypress}
             ></input>
             <div className="time-group">
-                <div className="time">{time}</div>
+                <div data-cy="time" className="time">{time}</div>
                 {
                     timerOn ?
-                    <div className="btn function" onClick={handlePause}><FontAwesomeIcon icon="pause"/></div> :
-                    <div className="btn function" onClick={handleStart}><FontAwesomeIcon icon="play"/></div>
+                    <div data-cy="pause" className="btn function" onClick={handlePause}><FontAwesomeIcon icon="pause"/></div> :
+                    <div data-cy="play" className="btn function" onClick={handleStart}><FontAwesomeIcon icon="play"/></div>
                 }
             </div>
-            <div className="sound">Notify</div>
+            <div data-cy="notify" className="sound">Notify</div>
         </div>
     )
 }

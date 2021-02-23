@@ -11,11 +11,29 @@ const NavBar = (props) => {
     return (
         <div className="navbar">
             <div className="tabs">
-                <div className={props.currentTab === tabs.LEISURE ? "tab selected" : "tab unselected"} onClick={() => handleShowTab(tabs.LEISURE)}>Leisure</div>
-                <div className={props.currentTab === tabs.STRICT ? "tab selected" : "tab unselected"} onClick={() => handleShowTab(tabs.STRICT)}>Strict</div>
+                <div
+                    data-cy="leisure-tab"
+                    className={props.currentTab === tabs.LEISURE ? "tab selected" : "tab unselected"} 
+                    onClick={() => handleShowTab(tabs.LEISURE)}
+                >
+                    Leisure
+                </div>
+                <div 
+                    data-cy="strict-tab"
+                    className={props.currentTab === tabs.STRICT ? "tab selected" : "tab unselected"} 
+                    onClick={() => handleShowTab(tabs.STRICT)}
+                >
+                    Strict
+                </div>
             </div>
             <div className="options">
-                <div className={props.currentTab === tabs.USER ? "user-icon selected" : "user-icon unselected"} onClick={() => handleShowTab(tabs.USER)}><FontAwesomeIcon icon="user"/></div>
+                <div
+                    data-cy="user-tab"
+                    className={props.currentTab === tabs.USER ? "user-icon selected" : "user-icon unselected"} 
+                    onClick={() => handleShowTab(tabs.USER)}
+                >
+                    <FontAwesomeIcon icon="user"/>
+                </div>
             </div>
         </div>
     )

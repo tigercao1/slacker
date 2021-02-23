@@ -1,4 +1,3 @@
-
 const msToTime = (ms) => {
     let pad = (time, digit = 2) => ('00' + time).slice(-digit);
     return pad(ms/3.6e6 | 0) + ':' + pad((ms%3.6e6)/6e4 | 0) + ':' + pad((ms%6e4)/1000 | 0) + '.' + pad(ms%1000, 3);

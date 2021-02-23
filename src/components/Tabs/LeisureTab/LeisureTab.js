@@ -44,6 +44,7 @@ const LeisureTab = () => {
         setTimerCardList(tempList);
     };
 
+    // Handler to set current active card id and card type
     const handleCurrentActive = (id, type) => {
         setCurrentActiveCardId(id);
         setCurrentActiveCardType(type);
@@ -57,6 +58,7 @@ const LeisureTab = () => {
         setMostRecentAddedCardId(null);
     };
 
+    // Update the time of the timer object with given id
     const updateObjTime = (id, ms) => {
         let tempList = [...timerCardList];
         let targetCard = tempList.find(card => card.id === id);
@@ -75,6 +77,7 @@ const LeisureTab = () => {
         handleCurrentActive(null, null);
     }
 
+    // Handler to reset all the timer of given type
     const handleResetAll = (type) => {
         let tempList = [...timerCardList]
         for (let i in tempList) {

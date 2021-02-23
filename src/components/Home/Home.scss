@@ -20,15 +20,28 @@
         animation: fade-in 1s ease-in forwards;
         opacity: 0;
         .spacer {
-            flex-grow: 1;
-            animation: slide-in 1s ease-out forwards;
+            animation-name: slide-in;
+            animation-duration: 1s;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+            -webkit-animation-name: slide-in;
+            -webkit-animation-duration: 1s;
+            -webkit-animation-timing-function: ease-out;
+            -webkit-animation-fill-mode: forwards;
         }
     }
 
     &.unmount {
         animation: fade-out 0.3s forwards;
         .spacer {
-            animation: slide-out 1s ease-in forwards;
+            animation-name: slide-out;
+            animation-duration: 1s;
+            animation-timing-function: ease-in;
+            animation-fill-mode: forwards;
+            -webkit-animation-name: slide-out;
+            -webkit-animation-duration: 1s;
+            -webkit-animation-timing-function: ease-in;
+            -webkit-animation-fill-mode: forwards;
         }
     }
 }
@@ -43,9 +56,21 @@
 }
 
 @keyframes slide-in {
+    0% { flex-grow: 1; }
+    100% { flex-grow: 0; }
+}
+
+@-webkit-keyframes slide-in {
+    0% { flex-grow: 1; }
     100% { flex-grow: 0; }
 }
 
 @keyframes slide-out {
+    0% { flex-grow: 0; }
+    100% { flex-grow: 1; }
+}
+
+@-webkit-keyframes slide-out {
+    0% { flex-grow: 0; }
     100% { flex-grow: 1; }
 }

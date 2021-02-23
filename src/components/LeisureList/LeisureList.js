@@ -47,19 +47,21 @@ const LeisureList = (props) => {
         <div id={type} className="column">
             <div className="leisure-header">
                 <div className="title">
-                    <div className="text">{type.charAt(0).toUpperCase() + type.slice(1)}</div>
-                    <div className="btn function" onClick={() => props.handleAddCard(type)}><FontAwesomeIcon icon="plus"/></div>
+                    <div data-cy={"list-title-" + type} className="text">{type.charAt(0).toUpperCase() + type.slice(1)}</div>
+                    <div data-cy={"add-card-" + type} className="btn function" onClick={() => props.handleAddCard(type)}><FontAwesomeIcon icon="plus"/></div>
                 </div>
                 <div className="total-time">
-                    <div className="time">{utils.msToTime(totalTime)}</div>
+                    <div data-cy={"total-time-" + type} className="time">{utils.msToTime(totalTime)}</div>
                     <div className="btn-group">
                         <div 
+                            data-cy={"pause-all-" + type}
                             className={props.currentActiveCardType === type ? "btn function" : "btn disabled"} 
                             onClick={props.handlePauseAll}
                         >
                             <FontAwesomeIcon icon="pause"/>
                         </div>
                         <div 
+                            data-cy={"reset-all-" + type}
                             className={props.currentActiveCardType === type ? "btn disabled" : "btn function"} 
                             onClick={() => props.handleResetAll(type)}
                         >
@@ -68,7 +70,7 @@ const LeisureList = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="body">
+            <div data-cy={"leisure-card-list-" + type} className="body">
                 { cardList(type) }
             </div>
         </div>
