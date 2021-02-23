@@ -12,32 +12,41 @@ const LeisureCard = (props) => {
     const [time, setTime] = useState(utils.msToTime(0));
     const [timerOn, setTimerOn] = useState(false);
     const [render, setRender] = useState(true);
-    const timerId = useRef('');
+    const timerId = useRef(''); // Reference to the timer interval
     const nameInput = useRef();
 
     useEffect(() => {
+        // Clear interval on timer pause
         if (!timerOn && timerId.current) {
             clearInterval(timerId.current);
         }
 
+        // When the current active timer card is not the current card, pause the timer on the current card
+        // To achieve when starting another card, the previous running card is paused
         if (timerOn && props.currentActiveCardId !== id) {
             setTimerOn(false);
+            // To update the time for the current timer object
             props.updateObjTime(id, milliseconds)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timerOn, props.currentActiveCardId, id])
 
     useEffect(() => {
+        // When this card is the current active card, focus on the name input
+        // To give the user the ability to edit card name on add
         if (props.mostRecentAddedCardId && props.mostRecentAddedCardId === id) {
             nameInput.current.focus();
         }
     }, [id, props.mostRecentAddedCardId])
 
     useEffect(() => {
+        // Setting the display time
         setTime(utils.msToTime(milliseconds));
     }, [milliseconds])
 
     useEffect(() => {
+        // Since time is stored as milliseconds
+        // Trigger rerender when the timer object is updated to avoid sychornization issues
         setMilliseconds(props.time);
     }, [props.time])
 
@@ -57,10 +66,13 @@ const LeisureCard = (props) => {
         if (!timerOn) {
             props.handleCurrentActive(id, type);
             setTimerOn(true);
+            // Get initial time
             let startTime = Date.now();
+            // Check current time against the initial time, update every 10 ms
             timerId.current = setInterval(() => {
                 let time = Math.floor((Date.now() - startTime))
                 setMilliseconds(milliseconds + time);
+                // Update the accumulated total time
                 props.updateTotalTime(time, type)
             }, 10);
         }
@@ -69,17 +81,21 @@ const LeisureCard = (props) => {
     const handlePause = () => {
         setTimerOn(false);
         props.handleCurrentActive(null, null);
+        // Update timer object on pause
         props.updateObjTime(id, milliseconds)
     }
 
     const handleDeleteItem = () => {
+        // Render triggers element class change for an unmount animation
         setRender(false);
     }
 
     const handleKeypress = (e) => {
         let currName = name;
+        // Handle Enter keypress
         if (e.keyCode === 13) {
             nameInput.current.blur();
+        // Handle Escape keypress
         } else if (e.keyCode === 27) {
             nameInput.current.value = currName;
             nameInput.current.blur();
@@ -87,6 +103,7 @@ const LeisureCard = (props) => {
     }
 
     const handleAnimationEnd = () => {
+        // Actual delete item logic on animation end
         if (!render) {
             props.handleDeleteItem(id);
         }

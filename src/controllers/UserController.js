@@ -2,16 +2,15 @@ import api from './../utils/api';
 
 class UserController {
     constructor() {
-        this.searchByTitle = this.login.bind(this);
+        this.register = this.register.bind(this);
     }
 
-    async login(body) {
-        let data = await api.post('/', {
+    async register(body) {
+        let data = await api.post('/users/signup', {
             body: body
         });
         return data;
     }
-
 }
 
 export default UserController;

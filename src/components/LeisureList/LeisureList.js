@@ -8,9 +8,11 @@ const LeisureList = (props) => {
 
     const type = props.type;
 
+    // Initialize total time with pre-defined object list or retreive from localstorage
     const [totalTime, setTotalTime] = useState(utils.calculateTotalTime(props.timerObjList, type));
 
     useEffect(() => {
+        // Trigger rerender when the timer object is updated to avoid sychornization issues
         setTotalTime(utils.calculateTotalTime(props.timerCardList, type));
     }, [props.timerCardList, type]);
 
@@ -48,7 +50,13 @@ const LeisureList = (props) => {
             <div className="leisure-header">
                 <div className="title">
                     <div data-cy={"list-title-" + type} className="text">{type.charAt(0).toUpperCase() + type.slice(1)}</div>
-                    <div data-cy={"add-card-" + type} className="btn function" onClick={() => props.handleAddCard(type)}><FontAwesomeIcon icon="plus"/></div>
+                    <div 
+                        data-cy={"add-card-" + type} 
+                        className="btn function" 
+                        onClick={() => props.handleAddCard(type)}
+                    >
+                        <FontAwesomeIcon icon="plus"/>
+                    </div>
                 </div>
                 <div className="total-time">
                     <div data-cy={"total-time-" + type} className="time">{utils.msToTime(totalTime)}</div>
