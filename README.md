@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Try it out [here] (https://slacker.tigerc.space).
+
 Want to keep track of what you have done today and how long you have been doing it for? Want to sneak in some slacking but not for too long? This is the app for you! Slacker lets you precisely track your daily tasks. Give it a try! 
 
 ## Project Setup
